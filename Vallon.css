@@ -1,0 +1,8 @@
+.name {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    align-items: center;   
+    margin-top: 25%;
+    font-size: 36px;
+}
