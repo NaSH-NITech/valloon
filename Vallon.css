@@ -13,4 +13,10 @@ p {
     margin-left: 30%;
     margin-top: 15px;
     line-height: 3em;
+    font-size: 100%;
+}
+.txt {
+    border: 0;
+    line-height: 3em;
+    padding: 0 20px;
 }
