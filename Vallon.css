@@ -8,8 +8,9 @@ p {
     font-size: 35px;
     font-weight: bold;
 }
-.text {
+.txt {
     margin-right: 30%;
     margin-left: 30%;
     margin-top: 15px;
+    line-height: 3em;
 }
