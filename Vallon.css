@@ -22,6 +22,8 @@ p {
     line-height: 3em;
     padding: 0 20px;
     margin-top: 15px;
+    background-color: ghostwhite;
+    outline: 1px solid;
 }
 .btn {
     display: flex;
@@ -40,6 +42,12 @@ p {
     border-bottom: 1px solid;
 }
 .quit {
-    width: fit-content;
-    display: ;
+    display: flex;
+    justify-content: center;
+    margin: 20px 18% 0 18%;
+    height: 35px;
+    text-align: center;
+    padding: 7px;
+    background-color: ghostwhite;
+    border: 1px solid;
 }
