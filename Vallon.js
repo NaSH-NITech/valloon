@@ -1,4 +1,10 @@
-function clickBtn1() {
-    const t1 = document.getElementById("name").value;
-    document.getElementById("h1").textContent = t1;
+
+document.getElementById('come-in').addEventListener('click',function(){
+   var element = document.getElementById('flame');
+   if (element.style.display === 'none') {
+      element.style.display = 'block';  
+    } else {
+      element.style.display = 'none';  
 }
+
+})
