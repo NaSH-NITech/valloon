@@ -54,3 +54,6 @@ p {
     background-color: ghostwhite;
     border: 1px solid;
 }
+.quit:hover {
+    opacity: 0.6;
+}
