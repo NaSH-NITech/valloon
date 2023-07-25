@@ -12,7 +12,7 @@
            
             <div class="btn">
                 <input type="text" id="name" name="name" class="txt" placeholder="名前を入力">
-                <button class="come-in" type="button" onclick="clickBtn()">入室</button>
+                <button  id="come"class="come-in"  type="button" onclick="clickBtn(),this.disabled = true">入室</button>
             </div>
             <div class="Come">
                 <li class="box" id="come">
@@ -20,7 +20,7 @@
                 
                 </li>
             </div>
-            <button class="quit" type="button" onclick="Textchange()">退出</button>
+            <button  id="quit" class="quit" type="button" style="visibility: hidden;"  onclick="Textchange()">退出</button>
         </div>
         
         <script src="Vallon.js"></script>

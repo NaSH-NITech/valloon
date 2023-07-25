@@ -19,6 +19,7 @@
 //   document.getElementById("h1").innerHTML = "name";
 // }
 function clickBtn() {
+  
   let Text = document.getElementById("name");
   let text = document.createTextNode(Text.value);
   let li = document.createElement("li");
@@ -30,4 +31,10 @@ function clickBtn() {
   const styleElement = document.createElement("style");
   styleElement.textContent = `#${uniqueID} { list-style: none; border-bottom: 1px solid; }`;
   document.head.appendChild(styleElement);
-}
+  let come=document.getElementById("come");
+  come.style.display='none';
+  let quit= document.getElementById("quit");
+  quit.style.visibility='visible'
+};
+
+

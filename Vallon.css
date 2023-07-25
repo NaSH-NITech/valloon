@@ -22,8 +22,9 @@ p {
     line-height: 3em;
     padding: 0 20px;
     margin-top: 15px;
-    background-color: ghostwhite;
+    background-color:orange;
     outline: 1px solid;
+
 }
 .come-in:hover {
     opacity: 0.6;
@@ -53,8 +54,11 @@ p {
     height: 35px;
     text-align: center;
     padding: 7px;
-    background-color: ghostwhite;
+    background-color: rgb(101, 113, 186);
     border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 0 0 15 15;
+    
 }
 .quit:hover {
     opacity: 0.6;
