@@ -1,12 +1,13 @@
-.name {
-    margin-top: 10%;  
+.name {  
     display: flex;
     flex-direction: column;
 }
-p {
-    text-align: center;
-    font-size: 35px;
-    font-weight: bold;
+.NaSH_logo {
+    display: flex;
+    justify-content: center;
+}
+.NaSH_Logo {
+    width: 200px;
 }
 .txt {
     margin-right: 2%;
