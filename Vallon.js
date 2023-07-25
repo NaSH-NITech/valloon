@@ -1,23 +1,3 @@
-
-// document.getElementsByClassName('come-in').addEventListener('click',function(){
-//    var element = document.getElementById('flame');
-//    if (element.style.display === 'none') {
-//       element.style.display = 'block';  
-//     } else {
-//       element.style.display = 'none';  
-// }
-
-// })
-
-
-// function clickBtn() {
-//   const t1 = document.getElementById("name").value;
-//   document.getElementById("h1").textContent = t1;
-// }
-
-// function Textchange() {
-//   document.getElementById("h1").innerHTML = "name";
-// }
 function clickBtn() {
   
   let Text = document.getElementById("name");
@@ -31,10 +11,13 @@ function clickBtn() {
   const styleElement = document.createElement("style");
   styleElement.textContent = `#${uniqueID} { list-style: none; border-bottom: 1px solid; }`;
   document.head.appendChild(styleElement);
-  let come=document.getElementById("come");
+
+  let come=document.getElementById("comein");
   come.style.display='none';
   let quit= document.getElementById("quit");
-  quit.style.visibility='visible'
-};
-
-
+  quit.style.visibility='visible';
+}
+function Textchange() {
+  const retire = dicument.getElementById("uniqueID");
+  element.remove()
+}

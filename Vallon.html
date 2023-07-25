@@ -7,17 +7,18 @@
         <link rel="stylesheet" href="Vallon.css">
     </head>
     <body> 
-        <p>NaSH</p>
+        <div class="NaSH_logo">
+            <img src="NaSH_Logo.png" alt="" class="NaSH_Logo">
+        </div>
         <div class="name">
            
             <div class="btn">
                 <input type="text" id="name" name="name" class="txt" placeholder="名前を入力">
-                <button  id="come"class="come-in"  type="button" onclick="clickBtn(),this.disabled = true">入室</button>
+                <button  id="comein" class="come-in"  type="button" onclick="clickBtn(),this.disabled = true">入室</button>
             </div>
             <div class="Come">
                 <li class="box" id="come">
                 <ul class="h1" id="h1">name</ul>
-                
                 </li>
             </div>
             <button  id="quit" class="quit" type="button" style="visibility: hidden;"  onclick="Textchange()">退出</button>
