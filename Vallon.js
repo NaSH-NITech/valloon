@@ -18,7 +18,7 @@ function clickBtn() {
   quit.style.visibility ='visible';
 }
 function Textchange() {
-  // document.getElementById("UniqueID");
-  // Element.remove();
+  document.getElementById("UniqueID");
+  Element.remove();
   window.location.reload();
 }
