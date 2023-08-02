@@ -1,24 +1,30 @@
-function clickBtn() {
-  
-  let Text = document.getElementById("name");
-  let text = document.createTextNode(Text.value);
-  let li = document.createElement("li");
-  const UniqueID = "element_" + Date.now();
-  li.setAttribute("id", UniqueID)
-  let list = document.getElementById('come');
-  li.appendChild(text);
-  list.appendChild(li);
-  const styleElement = document.createElement("style");
-  styleElement.textContent = `#${UniqueID} { list-style: none; border-bottom: 1px solid; }`;
-  document.head.appendChild(styleElement);
+let UniqueID = null;
+let log = document.getElementById("log");
+let comeinButton = document.getElementById("comein");
+let quitButton = document.getElementById("quit");
 
-  let come = document.getElementById("comein");
-  come.style.display ='none';
-  let quit = document.getElementById("quit");
-  quit.style.visibility ='visible';
+
+function clickBtn() {
+  let Name = document.getElementById("name").value.trim();
+  if (Name !== "" && UniqueID === null) {
+    UniqueID = Name;
+    let list = document.createElement("li");
+    list.textContent = Name;
+    list.classList.add("log-list");
+    log.appendChild(list);
+    document.getElementById("name").value = "";
+    quitButton.style.visibility = "visible";
+    comeinButton.style.display = "none";
+  }
 }
 function Textchange() {
-  document.getElementById("UniqueID");
-  Element.remove();
-  window.location.reload();
+  if (UniqueID !== null) {
+    UniqueID = null;
+
+    while (log.firstChild) {
+      log.removeChild(log.firstChild);
+    }
+    comeinButton.style.display = "inline";
+    quitButton.style.visibility = "hidden";    
+  }
 }
