@@ -38,7 +38,7 @@
     margin: 10px 18% 0 18%;
     height: 200px;
     outline: 1px solid;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
     flex-direction: column;
     overflow: auto;
@@ -63,4 +63,13 @@
 }
 .quit:hover {
     opacity: 0.6;
+}
+.log-list {
+    list-style: none;
+    width: fit-content;
+    margin: auto;
+}
+.log {
+    padding-left: 0;
+    margin: 8px 0;
 }
