@@ -15,16 +15,17 @@
     line-height: 3em;
     font-size: 100%;
     text-align: center;
-    outline: none
+    outline: none;
     
 }
 .come-in {
     border: 0;
     line-height: 3em;
-    padding: 0 20px;
+    padding: 0 25px;
     margin-top: 15px;
     background-color:orange;
     outline: 1px solid;
+    border-radius: 20px;
 
 }
 .come-in:hover {
@@ -55,7 +56,7 @@
     height: 35px;
     text-align: center;
     padding: 7px;
-    background-color: rgb(101, 113, 186);
+    background-color: rgb(140, 150, 218);
     border: 1px solid;
     border-radius: 15px;
     box-shadow: 0 0 15 15;
@@ -69,7 +70,20 @@
     width: fit-content;
     margin: auto;
 }
+.log-time {
+    list-style: none;
+    width: fit-content;
+    margin: auto;
+}
+.log_time {
+    padding-left: 0;
+    margin: 8px 0;
+}
 .log {
     padding-left: 0;
     margin: 8px 0;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-evenly;
 }
