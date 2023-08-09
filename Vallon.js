@@ -21,6 +21,7 @@ function clickBtn() {
     log_time.appendChild(List);
   }
 }
+
 function Textchange() {
   if (UniqueID !== null) {
     UniqueID = null;
@@ -35,9 +36,8 @@ function Textchange() {
 }
 function getCurrentDateTime() {
   const currentDateTime = new Date();
-  const day = ("0" + currentDateTime.getDate()).slice(-2);
   const hours = ("0" + currentDateTime.getHours()).slice(-2);
   const minutes = ("0" + currentDateTime.getMinutes()).slice(-2);
-  const formattedDateTime = ` ${day}/${hours}:${minutes}`;
+  const formattedDateTime = ` ${hours}:${minutes}`;
   return formattedDateTime;
 }
