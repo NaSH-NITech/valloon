@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Stack,
+  HStack,
 } from '@chakra-ui/react';
 import { memo, useState } from 'react';
 import { PrimaryButton } from '../../atoms/button/PrimaryButton';
@@ -18,19 +19,24 @@ import { useSignupAuth } from '../../../hooks/useSignupAuth';
 export const SignUpModal = memo((props) => {
   const { isOpen, onClose, onOpen } = props;
 
-  const { signup, page } = useSignupAuth();
+  const { signupCheck, signup, page, setPage } = useSignupAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [fullname, setFullName] = useState('');
   const [birth, setBirth] = useState('');
+  const [courage, setCourage] = useState('');
 
   const onClickSignUp = async () => {
-    signup({ email, password });
+    signupCheck({ email, password });
   };
 
   const onClickUserDetail = async () => {
-    signup({ name, fullname, birth });
+    signup({ email, password, name, fullname, birth, courage });
+  };
+
+  const onClickModalBack = () => {
+    setPage('signup');
   };
 
   const renderPage = () => {
@@ -72,7 +78,7 @@ export const SignUpModal = memo((props) => {
                         onChange={(e) => setPassword(e.target.value)}
                       />
                     </FormControl>
-                    <FormControl>
+                    <FormControl align="right">
                       <PrimaryButton onClick={onClickSignUp}>次へ</PrimaryButton>
                     </FormControl>
                   </Stack>
@@ -119,16 +125,25 @@ export const SignUpModal = memo((props) => {
                       />
                     </FormControl>
                     <FormControl>
-                      <FormLabel>誕生日</FormLabel>
+                      <FormLabel>大学</FormLabel>
                       <Input
-                        type="birth"
-                        placeholder="2000/01/01"
-                        value={birth}
-                        onChange={(e) => setBirth(e.target.value)}
+                        type="courage"
+                        placeholder="名古屋工業"
+                        value={courage}
+                        onChange={(e) => setCourage(e.target.value)}
                       />
                     </FormControl>
                     <FormControl>
-                      <PrimaryButton onClick={onClickUserDetail}>登録</PrimaryButton>
+                      <FormLabel>誕生日</FormLabel>
+                      <Input type="date" value={birth} onChange={(e) => setBirth(e.target.value)} />
+                    </FormControl>
+                    <FormControl>
+                      <HStack justifyContent={'space-between'}>
+                        <PrimaryButton onClick={onClickModalBack} color="purple.400">
+                          戻る
+                        </PrimaryButton>
+                        <PrimaryButton onClick={onClickUserDetail}>登録</PrimaryButton>
+                      </HStack>
                     </FormControl>
                   </Stack>
                 </ModalBody>

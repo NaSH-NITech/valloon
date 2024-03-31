@@ -2,13 +2,16 @@
 import { useCallback, useState } from 'react';
 import { useMessage } from './useMessage';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 export const useSignupAuth = () => {
   const [page, setPage] = useState('signup');
   const { showMessage } = useMessage();
+  const navigate = useNavigate();
 
-  const signup = useCallback(async (props) => {
+  const signupCheck = useCallback(async (props) => {
     const { email, password } = props;
     if (email === '' || password === '') {
       showMessage({ title: '未入力の項目があります', status: 'error' });
@@ -18,7 +21,6 @@ export const useSignupAuth = () => {
       return;
     }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
       setPage('UserDetail');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -26,5 +28,27 @@ export const useSignupAuth = () => {
       }
     }
   }, []);
-  return { signup, setPage, page };
+
+  const signup = useCallback(async (props) => {
+    const { email, password, name, fullname, birth, courage } = props;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        const user = userCredential.user;
+        showMessage({ title: 'ユーザー登録が完了しました', status: 'success' });
+        navigate('/home');
+        setDoc(doc(db, 'users', user.uid), {
+          email: email,
+          name: name,
+          fullname: fullname,
+          birth: birth,
+          courage: courage,
+        });
+      });
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        showMessage({ title: 'このメールアドレスは既に登録されています', status: 'error' });
+      }
+    }
+  }, []);
+  return { signupCheck, signup, setPage, page };
 };
