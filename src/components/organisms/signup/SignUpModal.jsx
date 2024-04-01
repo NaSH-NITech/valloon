@@ -51,12 +51,12 @@ export const SignUpModal = memo((props) => {
               textAlign="right"
               _hover={{ opacity: 0.8 }}
             >
-              新規登録
+              アカウントの新規作成
             </Link>
             <Modal isOpen={isOpen} onClose={onClose} autoFocus={false} motionPreset="slideInBottom">
               <ModalOverlay />
               <ModalContent mx={{ base: 4, md: 10 }}>
-                <ModalHeader>新規登録</ModalHeader>
+                <ModalHeader>新規作成</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody mx={4}>
                   <Stack spacing={4}>

@@ -19,9 +19,12 @@ export const useLoginAuth = () => {
       return;
     } else {
       try {
-        await signInWithEmailAndPassword(auth, email, password);
-        showMessage({ title: 'ログインしました', status: 'success' });
-        navigation('/home');
+        await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          showMessage({ title: 'ログインしました', status: 'success' });
+          navigation('/home');
+        });
       } catch (error) {
         if (error.code !== 'auth/email-already-in-use') {
           showMessage({ title: 'このメールアドレスは登録されていません', status: 'error' });

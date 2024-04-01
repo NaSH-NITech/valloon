@@ -34,7 +34,7 @@ export const useSignupAuth = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         const user = userCredential.user;
-        showMessage({ title: 'ユーザー登録が完了しました', status: 'success' });
+        showMessage({ title: '登録が完了しました', status: 'success' });
         navigate('/home');
         setDoc(doc(db, 'users', user.uid), {
           email: email,
