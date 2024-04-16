@@ -7,18 +7,21 @@ export const LoginUserContext = createContext();
 
 export const LoginUserProvider = (props) => {
   const [loginUser, setLoginUser] = useState(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const { children } = props;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setLoginUser(user);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoginUser(user);
+      }
+      setAuthChecked(true);
     });
-    return () => unsubscribe();
   }, []);
 
   return (
     <LoginUserContext.Provider value={{ loginUser, setLoginUser }}>
-      {children}
+      {authChecked && children}
     </LoginUserContext.Provider>
   );
 };

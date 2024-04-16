@@ -35,13 +35,15 @@ export const useSignupAuth = () => {
       await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
         const user = userCredential.user;
         showMessage({ title: '登録が完了しました', status: 'success' });
-        navigate('/home');
+        navigate('/');
         setDoc(doc(db, 'users', user.uid), {
           email: email,
           name: name,
           fullname: fullname,
           birth: birth,
           courage: courage,
+          isOnline: false,
+          img: 'アイコン',
         });
       });
     } catch (error) {

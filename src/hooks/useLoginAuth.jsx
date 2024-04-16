@@ -23,7 +23,7 @@ export const useLoginAuth = () => {
           const user = userCredential.user;
           console.log(user);
           showMessage({ title: 'ログインしました', status: 'success' });
-          navigation('/home');
+          navigation('/');
         });
       } catch (error) {
         if (error.code !== 'auth/email-already-in-use') {

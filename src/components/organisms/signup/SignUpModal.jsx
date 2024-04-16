@@ -118,7 +118,7 @@ export const SignUpModal = memo((props) => {
                     <FormControl isRequired>
                       <FormLabel>氏名</FormLabel>
                       <Input
-                        type="name"
+                        type="text"
                         placeholder="山田太郎"
                         value={fullname}
                         onChange={(e) => setFullName(e.target.value)}

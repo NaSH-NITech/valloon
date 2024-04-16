@@ -13,9 +13,9 @@ export const Header = memo(() => {
   const navigation = useNavigate();
   const { showMessage } = useMessage();
 
-  const onClickHome = useCallback(() => navigation('/home'), []);
-  const onClickUserManagement = useCallback(() => navigation('/home/user_management'), []);
-  const onClickSetting = useCallback(() => navigation('/home/setting'), []);
+  const onClickHome = useCallback(() => navigation('/'), []);
+  const onClickUserManagement = useCallback(() => navigation('/user_log'), []);
+  const onClickSetting = useCallback(() => navigation('/setting'), []);
   const onClickLogout = () => {
     signOut(auth)
       .then(() => showMessage({ title: 'ログアウトしました', status: 'success' }))
@@ -35,7 +35,7 @@ export const Header = memo(() => {
       >
         <Flex align="center" as="a" mr={8} _hover={{ cursor: 'pointer' }} onClick={onClickHome}>
           <Heading as="h1" fontSize={{ base: 'md', md: 'lg' }}>
-            ユーザー管理アプリ
+            入退室管理アプリ
           </Heading>
         </Flex>
         <Flex align="center" fontSize="sm" flexGrow={2} display={{ base: 'none', md: 'flex' }}>

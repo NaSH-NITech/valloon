@@ -13,26 +13,24 @@ export const Router = memo(() => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
-        {loginUser && (
-          <Route
-            path="/home/*"
-            element={
-              <>
-                <HeaderLayout />
-                <Routes>
-                  {HomeRoute.map((route) => (
-                    <Route
-                      key={route.path}
-                      path={route.path}
-                      element={loginUser ? route.element : <Navigate to="/" />}
-                    />
-                  ))}
-                </Routes>
-              </>
-            }
-          />
-        )}
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/*"
+          element={
+            <>
+              <HeaderLayout />
+              <Routes>
+                {HomeRoute.map((route) => (
+                  <Route
+                    key={route.path}
+                    path={route.path}
+                    element={loginUser ? route.element : <Navigate to="/login" />}
+                  />
+                ))}
+              </Routes>
+            </>
+          }
+        />
         <Route path="*" element={<Page404 />} />
       </Routes>
     </>

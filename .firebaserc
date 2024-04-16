@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "nash-valloon"
-  }
+  },
+  "targets": {
+    "nash-valloon": {
+      "hosting": {
+        "user-site": [
+          "nash-valloon-nitech"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
