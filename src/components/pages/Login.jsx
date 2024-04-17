@@ -29,8 +29,6 @@ export const Login = memo(() => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const onClickLogin = async () => {
     login({ email, password });
-    console.log(email, password);
-    console.log(loginUser);
 
     if (loginUser) {
       <Navigate to="/" />;
