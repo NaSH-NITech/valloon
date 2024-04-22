@@ -16,12 +16,11 @@ export const Header = memo(() => {
   const onClickHome = useCallback(() => navigation('/'), []);
   const onClickUserManagement = useCallback(() => navigation('/user_log'), []);
   const onClickSetting = useCallback(() => navigation('/setting'), []);
-  const onClickLogout = () => {
+  const onClickLogout = useCallback(() => {
     signOut(auth)
       .then(() => showMessage({ title: 'ログアウトしました', status: 'success' }))
-      .then(() => navigation('/'))
-      .catch((error) => console.error(error));
-  };
+      .then(() => navigation('/login'));
+  }, []);
 
   return (
     <>
@@ -53,6 +52,7 @@ export const Header = memo(() => {
         onClickHome={onClickHome}
         onClickUserManagement={onClickUserManagement}
         onClickSetting={onClickSetting}
+        onClickLogout={onClickLogout}
       />
     </>
   );
