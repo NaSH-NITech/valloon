@@ -43,7 +43,7 @@ export const useSignupAuth = () => {
           birth: birth,
           courage: courage,
           isOnline: false,
-          img: 'アイコン',
+          img: '',
         });
       });
     } catch (error) {

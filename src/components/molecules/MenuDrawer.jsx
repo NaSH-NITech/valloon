@@ -25,7 +25,7 @@ export const MenuDrawer = memo((props) => {
                 onClose();
               }}
             >
-              ユーザー一覧
+              ユーザーログ
             </Button>
             <Button
               w="100%"

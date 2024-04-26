@@ -21,9 +21,9 @@ export const useLoginAuth = () => {
       try {
         await signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
           showMessage({ title: 'ログインしました', status: 'success' });
           navigation('/');
+          return user;
         });
       } catch (error) {
         if (error.code !== 'auth/email-already-in-use') {
