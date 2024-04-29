@@ -27,9 +27,9 @@ export const UserCard = memo((props) => {
             borderRadius="md"
             onClick={() => onClickUserModal(user)}
           >
-            <CardBody key={user.id} user={user} p={3}>
-              <Stack key={user.id} spacing={1} align="center">
-                <Circle key={user.id} bg="gray.100" shadow="md" size="90px">
+            <CardBody user={user} p={3}>
+              <Stack spacing={1} align="center">
+                <Circle bg="gray.100" shadow="md" size="90px">
                   <img src={user.img || UserDefaultIcon} alt="アイコン" />
                 </Circle>
                 <Box>{user.name}</Box>

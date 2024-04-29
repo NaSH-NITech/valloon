@@ -9,8 +9,7 @@ export const useLoginAuth = () => {
   const navigation = useNavigate();
   const { showMessage } = useMessage();
 
-  const login = useCallback(async (props) => {
-    const { email, password } = props;
+  const login = useCallback(async ({ email, password }) => {
     if (email === '' || password === '') {
       showMessage({ title: '未入力の項目があります', status: 'error' });
       return;
