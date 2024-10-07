@@ -42,7 +42,7 @@ export const useSignupAuth = () => {
           fullname: fullname,
           birth: birth,
           courage: courage,
-          isOnline: false,
+          isOnline: true,
           img: '',
         });
       });
