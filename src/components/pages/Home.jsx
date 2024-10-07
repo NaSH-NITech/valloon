@@ -7,7 +7,7 @@ import { db } from '../../firebase';
 import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
 import { useLoginUser } from '../../hooks/provders/useLoginUserPrvider';
-import { Route, Router } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export const Home = memo(() => {
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -18,13 +18,13 @@ export const Home = memo(() => {
     const handleNfcUserStatus = async () => {
       const urlSearchparams = new URLSearchParams(window.location.search);
       const nfcId = urlSearchparams.get('nfc');
-
+  
       if (nfcId === 'true') {
         try {
           // ユーザーのドキュメント参照を取得
           const userRef = doc(db, 'users', uid);
           const userDoc = await getDoc(userRef);
-
+  
           if (userDoc.exists()) {
             const currentUserOnline = userDoc.data().isOnline;
             await setDoc(
@@ -32,18 +32,25 @@ export const Home = memo(() => {
               {
                 isOnline: !currentUserOnline,
               },
-              { merge: true } 
+              { merge: true }
             );
+            
+            // URLから?nfc=trueを削除
+            const newUrl = window.location.origin + window.location.pathname;
+            window.history.replaceState(null, '', newUrl);
+            
+            // "/home"ページなどに遷移する場合
+            // Navigateを使うとリダイレクトができます
+            // <Navigate to="/" />;
           } else {
             console.log("ユーザードキュメントが存在しません");
           }
-          window.location.href = '/';
         } catch (error) {
           console.error("入室/退室ステータスの更新に失敗しました:", error);
         }
       }
     };
-
+  
     if (uid) {
       handleNfcUserStatus(); // 非同期処理を呼び出す
     }
