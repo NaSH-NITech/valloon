@@ -7,6 +7,7 @@ import { db } from '../../firebase';
 import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
 import { useLoginUser } from '../../hooks/provders/useLoginUserPrvider';
+import { Route, Router } from 'react-router-dom';
 
 export const Home = memo(() => {
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -33,10 +34,10 @@ export const Home = memo(() => {
               },
               { merge: true } 
             );
-            window.location.reload();
           } else {
             console.log("ユーザードキュメントが存在しません");
           }
+          window.location.href = '/';
         } catch (error) {
           console.error("入室/退室ステータスの更新に失敗しました:", error);
         }
