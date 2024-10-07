@@ -36,6 +36,7 @@ export const Home = memo(() => {
                 },
                 { merge: true }
               );
+              window.location.reload();
             } else {
               console.log("ユーザードキュメントが存在しません");
             }
