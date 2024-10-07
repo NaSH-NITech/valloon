@@ -2,7 +2,7 @@
 import { Box, Divider, Flex, Stack } from '@chakra-ui/react';
 import { memo, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { collection, query, where, onSnapshot, doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, doc, setDoc} from 'firebase/firestore';
 import { db } from '../../firebase';
 import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
@@ -22,20 +22,26 @@ export const Home = memo(() => {
         try {
           // ユーザーのドキュメント参照を取得
           const userRef = doc(db, 'users', uid);
-          const userDoc = await getDoc(userRef);
 
-          if (userDoc.exists()) {
-            const currentUserOnline = userDoc.data().isOnline;
-            await setDoc(
-              userRef,
-              {
-                isOnline: !currentUserOnline,
-              },
-              { merge: true } 
-            );
-          } else {
-            console.log("ユーザードキュメントが存在しません");
-          }
+          // リアルタイムでユーザーの入室/退室状態を監視
+          const unsubscribe = onSnapshot(userRef, async (userDoc) => {
+            if (userDoc.exists()) {
+              const currentUserOnline = userDoc.data().isOnline;
+
+              // 入室/退室のステータスを反転させる
+              await setDoc(
+                userRef,
+                {
+                  isOnline: !currentUserOnline,
+                },
+                { merge: true }
+              );
+            } else {
+              console.log("ユーザードキュメントが存在しません");
+            }
+          });
+
+          return () => unsubscribe(); // クリーンアップ
         } catch (error) {
           console.error("入室/退室ステータスの更新に失敗しました:", error);
         }
