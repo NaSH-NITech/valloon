@@ -2,13 +2,50 @@
 import { Box, Divider, Flex, Stack } from '@chakra-ui/react';
 import { memo, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
+import { useLoginUser } from '../../hooks/provders/useLoginUserPrvider';
 
 export const Home = memo(() => {
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const { loginUser } = useLoginUser();
+  const { uid } = loginUser;
+
+  useEffect(() => {
+    const handleNfcUserStatus = async () => {
+      const urlSearchparams = new URLSearchParams(window.location.search);
+      const nfcId = urlSearchparams.get('nfc');
+
+      if (nfcId === 'true') {
+        try {
+          // ユーザーのドキュメント参照を取得
+          const userRef = doc(db, 'users', uid);
+          const userDoc = await getDoc(userRef);
+
+          if (userDoc.exists()) {
+            const currentUserOnline = userDoc.data().isOnline;
+            await setDoc(
+              userRef,
+              {
+                isOnline: !currentUserOnline,
+              },
+              { merge: true } 
+            );
+          } else {
+            console.log("ユーザードキュメントが存在しません");
+          }
+        } catch (error) {
+          console.error("入室/退室ステータスの更新に失敗しました:", error);
+        }
+      }
+    };
+
+    if (uid) {
+      handleNfcUserStatus(); // 非同期処理を呼び出す
+    }
+  }, [uid]);
 
   useEffect(() => {
     const fetchOnlineUsers = async () => {
