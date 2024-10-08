@@ -38,6 +38,7 @@ export const Home = memo(() => {
               },
               { merge: true }
             ).then(() => {
+              console.log('入室/退室ステータスを更新しました');
             if(currentUserOnline) {
               showMessage({ title: '退室しました', status: 'success' });
             } else {
