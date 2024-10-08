@@ -77,7 +77,7 @@ export const Home = memo(() => {
 
   return (
     <Flex align="center" justify="center" hight="100vh" py={4}>
-      <Box bg="white" w="xl" h="xl" p={4} borderRadius="md" shadow="md">
+      <Box bg="white" w="xl" h="auto" minH="xl" p={4} borderRadius="md" shadow="md">
         <SAcctiveUser as="h1" size="lg" textAlign="center">
           現在の入室者数：
           <span>{onlineUsers.filter((user) => user.isOnline).length}</span>

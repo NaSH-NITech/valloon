@@ -29,7 +29,7 @@ export const UserCard = memo((props) => {
           >
             <CardBody user={user} p={3}>
               <Stack spacing={1} align="center">
-                <Circle bg="gray.100" shadow="md" size="90px">
+                <Circle bg="gray.100" shadow="md" size="80px">
                   <img src={user.img || UserDefaultIcon} alt="アイコン" />
                 </Circle>
                 <Box>{user.name}</Box>
