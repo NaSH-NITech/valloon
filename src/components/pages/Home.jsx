@@ -37,13 +37,13 @@ export const Home = memo(() => {
                 isOnline: !currentUserOnline,
               },
               { merge: true }
-            );
-  
+            ).then(() => {
             if(currentUserOnline) {
               showMessage({ title: '退室しました', status: 'success' });
             } else {
               showMessage({ title: '入室しました', status: 'success' });
             }
+          });
   
             // URLから?nfc=trueを削除
             const newUrl = window.location.origin + window.location.pathname;
