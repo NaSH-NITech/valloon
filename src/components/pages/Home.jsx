@@ -1,13 +1,12 @@
 /* eslint-disable react/display-name */
 import { Box, Divider, Flex, Stack } from '@chakra-ui/react';
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { collection, query, where, onSnapshot, doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
 import { useLoginUser } from '../../hooks/provders/useLoginUserPrvider';
-import { Navigate } from 'react-router-dom';
 import { useMessage } from '../../hooks/useMessage';
 
 export const Home = memo(() => {
@@ -15,13 +14,16 @@ export const Home = memo(() => {
   const { loginUser } = useLoginUser();
   const { showMessage } = useMessage();
   const { uid } = loginUser;
+  const hasHandledNfcStatus = useRef(false);  // フラグを追加
+
 
   useEffect(() => {
     const handleNfcUserStatus = async () => {
       const urlSearchparams = new URLSearchParams(window.location.search);
       const nfcId = urlSearchparams.get('nfc');
   
-      if (nfcId === 'true') {
+      if (nfcId === 'true' && !hasHandledNfcStatus.current) {
+        hasHandledNfcStatus.current = true;  // 初回実行後にフラグを立てる
         try {
           // ユーザーのドキュメント参照を取得
           const userRef = doc(db, 'users', uid);
@@ -36,13 +38,13 @@ export const Home = memo(() => {
               },
               { merge: true }
             );
-
+  
             if(currentUserOnline) {
               showMessage({ title: '退室しました', status: 'success' });
             } else {
               showMessage({ title: '入室しました', status: 'success' });
             }
-            
+  
             // URLから?nfc=trueを削除
             const newUrl = window.location.origin + window.location.pathname;
             window.history.replaceState(null, '', newUrl);
@@ -56,7 +58,7 @@ export const Home = memo(() => {
     };
   
     if (uid) {
-      handleNfcUserStatus(); // 非同期処理を呼び出す
+      handleNfcUserStatus();  // 非同期処理を呼び出す
     }
   }, [uid, showMessage]);
 
