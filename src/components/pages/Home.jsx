@@ -8,10 +8,12 @@ import { EnterAndExit } from '../organisms/EnterAndExit';
 import { UserCard } from '../molecules/UserCard';
 import { useLoginUser } from '../../hooks/provders/useLoginUserPrvider';
 import { Navigate } from 'react-router-dom';
+import { useMessage } from '../../hooks/useMessage';
 
 export const Home = memo(() => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { loginUser } = useLoginUser();
+  const { showMessage } = useMessage();
   const { uid } = loginUser;
 
   useEffect(() => {
@@ -34,14 +36,16 @@ export const Home = memo(() => {
               },
               { merge: true }
             );
+
+            if(currentUserOnline) {
+              showMessage({ title: '退室しました', status: 'success' });
+            } else {
+              showMessage({ title: '入室しました', status: 'success' });
+            }
             
             // URLから?nfc=trueを削除
             const newUrl = window.location.origin + window.location.pathname;
             window.history.replaceState(null, '', newUrl);
-            
-            // "/home"ページなどに遷移する場合
-            // Navigateを使うとリダイレクトができます
-            // <Navigate to="/" />;
           } else {
             console.log("ユーザードキュメントが存在しません");
           }
@@ -54,7 +58,7 @@ export const Home = memo(() => {
     if (uid) {
       handleNfcUserStatus(); // 非同期処理を呼び出す
     }
-  }, [uid]);
+  }, [uid, showMessage]);
 
   useEffect(() => {
     const fetchOnlineUsers = async () => {
